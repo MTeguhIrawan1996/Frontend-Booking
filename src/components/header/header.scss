@@ -1,0 +1,176 @@
+.header {
+  background-color: #2f2fa2;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border-bottom: 3px solid $primary;
+}
+
+.headerWrapper {
+  width: 100%;
+  margin: 20px 0px 100px 0px;
+}
+.headerWrapper.listMode {
+  margin: 20px 0px 0px 0px;
+}
+.headerList {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.headerListItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerListItem.active {
+  border: 2px solid $primary;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.headerDesc {
+  margin: 20px 0px;
+  width: 75%;
+}
+
+.headerBtn {
+  border: none;
+  padding: 15px;
+  font-weight: 500;
+  color: #fff;
+  background-color: $primary;
+  border-radius: 5px;
+}
+.headerBtnSearch {
+  border: none;
+  padding: 5px 10px;
+  font-weight: 300;
+  color: #fff;
+  background-color: $primary;
+}
+.headerBtnSearch:hover {
+  color: #fff;
+  background-color: $secondary;
+}
+.headerBtn:hover {
+  color: #fff;
+  background-color: $secondary;
+}
+
+.headerSearch {
+  height: 35px;
+  background-color: #fff;
+  border: 2px solid $primary;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  max-width: 1120px;
+}
+
+.headerIcon {
+  color: $gray-500;
+}
+
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.headerSearchInput {
+  border: none;
+  outline: none;
+}
+.headerSearchText {
+  color: $gray-500;
+  cursor: pointer;
+  // width: 2px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+}
+.date {
+  position: absolute;
+  top: 45px;
+}
+.options {
+  position: absolute;
+  top: 45px;
+  background-color: #fff;
+  color: $gray-500;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+}
+.optionItem {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.optionCounter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: black;
+}
+
+.optionCounterButton {
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  border: 1px solid $secondary;
+}
+.optionCounterButton:hover {
+  border: 1px solid $primary;
+}
+.optionCounterNumber {
+  width: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .headerList {
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 12px;
+    margin-bottom: 25px;
+  }
+  .headerDesc {
+    width: 100%;
+  }
+  .headerSearch {
+    font-size: 12px;
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 576px) {
+  .headerTitle {
+    font-size: 24px;
+  }
+  .headerDesc {
+    font-size: 16px;
+  }
+  .headerBtn {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .headerSearch {
+    font-size: 12px;
+    max-width: 450px;
+  }
+}
