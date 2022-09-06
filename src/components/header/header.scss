@@ -100,10 +100,12 @@
 .date {
   position: absolute;
   top: 45px;
+  z-index: 9999;
 }
 .options {
   position: absolute;
   top: 45px;
+  z-index: 9999;
   background-color: #fff;
   color: $gray-500;
   border-radius: 5px;

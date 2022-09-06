@@ -1,11 +1,20 @@
 import React from "react";
-import { Header, Navbar } from "../../components";
+import {
+  Featured,
+  FeaturedProperties,
+  Header,
+  Navbar,
+  PropertyList,
+} from "../../components";
 
 const Home = () => {
   return (
     <React.Fragment>
       <Navbar />
       <Header />
+      <Featured />
+      <PropertyList />
+      <FeaturedProperties />
     </React.Fragment>
   );
 };
