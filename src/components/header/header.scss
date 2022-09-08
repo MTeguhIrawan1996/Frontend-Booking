@@ -1,10 +1,11 @@
 .header {
-  background-color: #2f2fa2;
+  background-color: #313e60;
   color: #fff;
   display: flex;
   justify-content: center;
   position: relative;
   border-bottom: 3px solid $primary;
+  margin-top: 65px;
 }
 
 .headerWrapper {
@@ -92,7 +93,7 @@
 .headerSearchText {
   color: $gray-500;
   cursor: pointer;
-  // width: 2px;
+  // width: 320px;
   // display: flex;
   // justify-content: center;
   // align-items: center;
@@ -100,12 +101,12 @@
 .date {
   position: absolute;
   top: 45px;
-  z-index: 9999;
+  z-index: 5;
 }
 .options {
   position: absolute;
   top: 45px;
-  z-index: 9999;
+  z-index: 5;
   background-color: #fff;
   color: $gray-500;
   border-radius: 5px;

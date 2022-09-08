@@ -2,7 +2,9 @@ import React from "react";
 import {
   Featured,
   FeaturedProperties,
+  Footer,
   Header,
+  MailList,
   Navbar,
   PropertyList,
 } from "../../components";
@@ -15,6 +17,7 @@ const Home = () => {
       <Featured />
       <PropertyList />
       <FeaturedProperties />
+      <Footer />
     </React.Fragment>
   );
 };

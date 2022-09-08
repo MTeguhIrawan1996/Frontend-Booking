@@ -1,11 +1,13 @@
 import React from "react";
-import { Header, Navbar } from "../../components";
+import { Footer, Header, ListHotels, Navbar } from "../../components";
 
 const List = () => {
   return (
     <React.Fragment>
       <Navbar />
       <Header type="list" />
+      <ListHotels />
+      <Footer />
     </React.Fragment>
   );
 };

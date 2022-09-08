@@ -54,6 +54,8 @@
 
 @import "../../components/navbar/navbar.scss";
 @import "../../components/header/header.scss";
+@import "../../components/footer/footer.scss";
+@import "../../components/listHotels/listHotel.scss";
 
 section {
   margin-top: 80px;
@@ -76,13 +78,17 @@ section {
   .img-wrapper {
     height: 100%;
     margin-bottom: 0;
-    // border-radius: 0.9375rem;
     overflow: hidden;
     border-radius: 15px 15px 15px 15px;
   }
-
+  .fpItem {
+    gap: 3px;
+  }
   .meta-wrapper {
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+
     a {
       text-decoration: none;
     }
@@ -93,6 +99,24 @@ section {
     span {
       font-size: 0.975rem;
       color: $gray-500;
+      &.fpCity {
+        font-weight: 300;
+      }
+      &.fpPrice {
+        font-weight: 500;
+      }
+    }
+    .fpRating > button {
+      background-color: $secondary;
+      padding: 3px 5px;
+      border: none;
+      margin-right: 10px;
+      color: #fff;
+      font-weight: 500;
+      width: 40px;
+    }
+    .fpRating > span {
+      font-size: 14px;
     }
   }
 

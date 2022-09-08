@@ -1,8 +1,12 @@
 .navbar {
   height: 65px;
-  background-color: #2f2fa2;
+  background-color: #313e60;
   display: flex;
   justify-content: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 9999;
 }
 
 .navbarWrapper {

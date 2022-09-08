@@ -1,0 +1,84 @@
+.list-wrapper {
+  margin-top: 20px;
+  display: flex;
+  // flex-direction: column;
+  gap: 20px;
+}
+.ls-search {
+  flex: 1;
+  background-color: $primary;
+  padding: 10px;
+  border-radius: 10px;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 75px;
+  height: max-content;
+  .ls-title {
+    color: $gray-900;
+    font-size: 20px;
+  }
+  .ls-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+}
+.ls-item > label {
+  font-size: 12px;
+  font-weight: 500;
+}
+.ls-item > input {
+  height: 35px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+.ls-item > span {
+  height: 35px;
+  padding: 5px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.ls-options {
+  padding: 10px;
+}
+.ls-optionItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: $gray-900;
+  font-size: 12px;
+}
+.ls-option-input {
+  width: 50px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 5px;
+  &.price {
+    width: 80px;
+  }
+}
+.btn-search {
+  background-color: #313e60;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  font-weight: 500;
+}
+.btn-search:hover {
+  background-color: $secondary;
+  color: #fff;
+}
+.ls-result {
+  flex: 3;
+  background-color: aqua;
+  height: 1200px;
+}
