@@ -1,9 +1,9 @@
 import React from "react";
-
 import { DateRange } from "react-date-range";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
+import ResultItem from "../resultItem/ResultItem";
 
 const ListHotels = () => {
   const location = useLocation();
@@ -17,7 +17,7 @@ const ListHotels = () => {
       <div className="container">
         <div className="list-wrapper">
           <div className="ls-search">
-            <h1 className="ls-title">Serach</h1>
+            <h1 className="ls-title">Search</h1>
             <div className="ls-item">
               <label>Destination</label>
               <input type="text" placeholder={destination} />
@@ -90,7 +90,14 @@ const ListHotels = () => {
             </div>
             <button className="btn btn-search">Search</button>
           </div>
-          <div className="ls-result">asd</div>
+          <div className="ls-result">
+            <ResultItem />
+            <ResultItem />
+            <ResultItem />
+            <ResultItem />
+            <ResultItem />
+            <ResultItem />
+          </div>
         </div>
       </div>
     </React.Fragment>

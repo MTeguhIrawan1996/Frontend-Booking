@@ -66,19 +66,17 @@
   }
 }
 .btn-search {
-  background-color: #313e60;
-  color: #fff;
+  background-color: #313e60 !important;
   padding: 10px;
   border: none;
   width: 100%;
   font-weight: 500;
 }
 .btn-search:hover {
-  background-color: $secondary;
+  background-color: $secondary !important;
   color: #fff;
 }
 .ls-result {
   flex: 3;
-  background-color: aqua;
-  height: 1200px;
+  height: max-content;
 }

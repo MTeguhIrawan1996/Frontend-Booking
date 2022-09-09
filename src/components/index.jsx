@@ -5,6 +5,8 @@ import PropertyList from "./propertyList/PropertyList";
 import FeaturedProperties from "./featuredProperties/FeaturedProperties";
 import Footer from "./footer/Footer";
 import ListHotels from "./listHotels/ListHotels";
+import ResultItem from "./resultItem/ResultItem";
+import HotelContent from "./hotelContent/HotelContent";
 
 export {
   Navbar,
@@ -14,4 +16,6 @@ export {
   FeaturedProperties,
   Footer,
   ListHotels,
+  ResultItem,
+  HotelContent,
 };

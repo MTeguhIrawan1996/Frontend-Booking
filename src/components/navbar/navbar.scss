@@ -21,20 +21,9 @@
   font-weight: 500;
   font-size: 34px;
 }
-
-.navButton {
-  margin-left: 15px;
-  border: none;
-  padding: 5px 15px;
-  cursor: pointer;
-  color: #fff;
-  background-color: $primary;
-  border-radius: 5px;
-}
-
-.navButton:hover {
-  color: #fff;
-  background-color: $secondary;
+.navItem {
+  display: flex;
+  gap: 10px;
 }
 
 @media (max-width: 576px) {

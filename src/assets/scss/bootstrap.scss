@@ -56,6 +56,8 @@
 @import "../../components/header/header.scss";
 @import "../../components/footer/footer.scss";
 @import "../../components/listHotels/listHotel.scss";
+@import "../../components/resultItem/resultItem.scss";
+@import "../../components/hotelContent/hotelContent.scss";
 
 section {
   margin-top: 80px;
@@ -106,20 +108,10 @@ section {
         font-weight: 500;
       }
     }
-    .fpRating > button {
-      background-color: $secondary;
-      padding: 3px 5px;
-      border: none;
-      margin-right: 10px;
-      color: #fff;
-      font-weight: 500;
-      width: 40px;
-    }
     .fpRating > span {
       font-size: 14px;
     }
   }
-
   &.card-featured {
     overflow: hidden;
     cursor: pointer;
@@ -177,6 +169,32 @@ section {
       }
     }
   }
+}
+button {
+  &.btn-rating {
+    background-color: $secondary;
+    padding: 3px 5px;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    width: 40px;
+    border-radius: 5px;
+    cursor: unset;
+    &.btn-rating-result {
+      margin-right: 0;
+    }
+  }
+}
+.btn {
+  border: none;
+  padding: 5px 10px;
+  color: #fff !important;
+  background-color: $primary;
+  border-radius: 5px;
+}
+.btn:hover {
+  background-color: $secondary;
+  color: #fff;
 }
 
 @media (max-width: 576px) {

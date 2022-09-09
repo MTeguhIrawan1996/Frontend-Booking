@@ -39,27 +39,11 @@
 }
 
 .headerBtn {
-  border: none;
-  padding: 15px;
   font-weight: 500;
-  color: #fff;
-  background-color: $primary;
-  border-radius: 5px;
+  padding: 15px !important;
 }
 .headerBtnSearch {
-  border: none;
-  padding: 5px 10px;
-  font-weight: 300;
-  color: #fff;
-  background-color: $primary;
-}
-.headerBtnSearch:hover {
-  color: #fff;
-  background-color: $secondary;
-}
-.headerBtn:hover {
-  color: #fff;
-  background-color: $secondary;
+  font-weight: 300 !important;
 }
 
 .headerSearch {
