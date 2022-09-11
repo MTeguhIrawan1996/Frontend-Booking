@@ -7,6 +7,7 @@ import Footer from "./footer/Footer";
 import ListHotels from "./listHotels/ListHotels";
 import ResultItem from "./resultItem/ResultItem";
 import HotelContent from "./hotelContent/HotelContent";
+import SwiperHotel from "./swiperHotel/SwiperHotel";
 
 export {
   Navbar,
@@ -18,4 +19,5 @@ export {
   ListHotels,
   ResultItem,
   HotelContent,
+  SwiperHotel,
 };

@@ -32,6 +32,72 @@
   color: $secondary;
   font-weight: 500;
 }
-// .kanan {
-//   padding: 0px 100px 50px 0px;
-// }
+.hotel-img {
+  margin-top: 30px;
+}
+
+.hotel-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.hotel-detail-text {
+  flex: 3;
+}
+.hotel-detail-title {
+  font-size: 24px;
+  color: $primary;
+}
+.hotel-desc {
+  font-size: 16px;
+  color: $gray-600;
+}
+.hotel-detail-price {
+  flex: 1;
+  display: flex;
+  background-color: #313e60;
+  padding: 20px;
+  border-radius: 5px;
+  flex-direction: column;
+  gap: 20px;
+  h2 {
+    font-size: 24px;
+    color: $gray-300;
+    font-weight: 500;
+  }
+}
+.hotel-title-price {
+  font-size: 20px;
+  color: $primary;
+}
+
+.hotel-price-desc {
+  font-size: 16px;
+  color: $gray-300;
+}
+
+@media (max-width: 834px) {
+  .hotel-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .hotel-title {
+    font-size: 28px;
+  }
+  .hotel-address {
+    font-size: 14px;
+  }
+  .hotel-distance {
+    font-size: 14px;
+  }
+  .hotel-price {
+    font-size: 14px;
+  }
+  .hotel-detail {
+    display: flex;
+    flex-direction: column;
+  }
+}

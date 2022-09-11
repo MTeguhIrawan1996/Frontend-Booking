@@ -80,3 +80,13 @@
   flex: 3;
   height: max-content;
 }
+
+@media (max-width: 834px) {
+  .list-wrapper {
+    flex-direction: column;
+  }
+  .ls-search {
+    position: relative;
+    top: 0px;
+  }
+}

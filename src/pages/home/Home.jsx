@@ -4,7 +4,6 @@ import {
   FeaturedProperties,
   Footer,
   Header,
-  MailList,
   Navbar,
   PropertyList,
 } from "../../components";
