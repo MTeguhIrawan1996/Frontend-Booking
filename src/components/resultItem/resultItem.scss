@@ -83,3 +83,17 @@
   font-weight: 300;
   color: $gray-900;
 }
+
+@media (max-width: 834px) {
+  .result-item {
+    flex-direction: column;
+  }
+  .img-result {
+    width: 100%;
+    height: 320px;
+  }
+  .result-rating {
+    justify-content: end;
+    gap: 20px;
+  }
+}
