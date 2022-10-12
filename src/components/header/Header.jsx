@@ -13,8 +13,11 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { update } from "../../features/searchSlice";
 
 const Header = ({ type }) => {
+  const dispatch = useDispatch();
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
@@ -41,6 +44,7 @@ const Header = ({ type }) => {
     });
   };
   const handleSearch = () => {
+    dispatch(update({ destination, date, options, status: true }));
     navigate("/hotels", { state: { destination, date, options } });
   };
   return (
@@ -198,7 +202,7 @@ const Header = ({ type }) => {
                       </div>
                     )}
                   </div>
-                  <div className="headerSearchItem">
+                  <div className="headerSearchItem btn-header-search">
                     <button
                       className="btn headerBtnSearch"
                       onClick={handleSearch}

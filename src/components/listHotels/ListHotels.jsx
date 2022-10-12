@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DateRange } from "react-date-range";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import ResultItem from "../resultItem/ResultItem";
+import useFetch from "../../hooks/useFetch";
 
 const ListHotels = () => {
   const location = useLocation();
@@ -11,6 +12,16 @@ const ListHotels = () => {
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.options);
+  const [min, setMin] = useState("");
+  const [max, setMax] = useState("");
+
+  const { data, loading, error, reFetch } = useFetch(
+    `hotels?city=${destination}&min=${min}&max=${max}`
+  );
+
+  const handleClick = () => {
+    reFetch();
+  };
 
   return (
     <React.Fragment>
@@ -47,6 +58,7 @@ const ListHotels = () => {
                     type="number"
                     className="ls-option-input price"
                     min={1}
+                    onChange={(e) => setMin(e.target.value)}
                   />
                 </div>
                 <div className="ls-optionItem">
@@ -57,6 +69,7 @@ const ListHotels = () => {
                     type="number"
                     className="ls-option-input price"
                     min={1}
+                    onChange={(e) => setMax(e.target.value)}
                   />
                 </div>
                 <div className="ls-optionItem">
@@ -88,15 +101,12 @@ const ListHotels = () => {
                 </div>
               </div>
             </div>
-            <button className="btn btn-search">Search</button>
+            <button className="btn btn-search" onClick={handleClick}>
+              Search
+            </button>
           </div>
           <div className="ls-result">
-            <ResultItem />
-            <ResultItem />
-            <ResultItem />
-            <ResultItem />
-            <ResultItem />
-            <ResultItem />
+            <ResultItem data={data} />
           </div>
         </div>
       </div>

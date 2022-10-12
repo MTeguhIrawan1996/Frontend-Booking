@@ -2,23 +2,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import SwiperHotel from "../swiperHotel/SwiperHotel";
+import useFetch from "../../hooks/useFetch";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const HotelContent = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const state = useSelector((state) => state.search);
+  const id = location.pathname.split("/")[2];
+  const { data, loading, error } = useFetch(`/hotels/${id}`);
+  const [days, setDays] = useState(0);
+
+  useEffect(() => {
+    if (state.status === true) {
+      const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+      const dayDifference = (date1, date2) => {
+        const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+        setDays(diffDays);
+      };
+      dayDifference(state.date[0].endDate, state.date[0].startDate);
+    } else {
+      navigate("/");
+    }
+  }, [state]);
+
   return (
     <React.Fragment>
       <div className="container">
         <div className="hotel-wrapper">
           <div className="address">
-            <h1 className="hotel-title">Grand Hotel</h1>
+            <h1 className="hotel-title">{data.name}</h1>
             <div className="hotel-address">
               <FontAwesomeIcon icon={faLocationDot} />
-              <span>Jakarta Selatan Indonesia</span>
+              <span>{data.address}</span>
             </div>
             <span className="hotel-distance">
-              Excellent location - 500m from center
+              Excellent location - {data.distance} from center
             </span>
             <span className="hotel-price">
-              Book a stay over $114 at this property and get a free airport taxi
+              Book a stay over Rp.{data.cheapestPrice} at this property and get
+              a free airport taxi
             </span>
           </div>
           <div className="button-hotel">
@@ -26,31 +53,25 @@ const HotelContent = () => {
           </div>
         </div>
         <div className="hotel-img">
-          <SwiperHotel />
+          <SwiperHotel photos={data.photos} />
         </div>
         <div className="hotel-detail">
           <div className="hotel-detail-text">
-            <h1 className="hotel-detail-title">Stay in the heart of Karakow</h1>
-            <p className="hotel-desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-              provident id aliquam itaque labore nulla blanditiis eveniet, hic
-              unde maiores? Officia laudantium nulla possimus, molestiae saepe
-              repellendus quaerat cumque fugiat. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Blanditiis, fuga officiis ex officia
-              inventore repudiandae quo laboriosam pariatur expedita
-              exercitationem obcaecati sunt consequuntur nemo similique, earum
-              voluptatum fugiat autem! Doloribus.
-            </p>
+            <h1 className="hotel-detail-title">{data.title}</h1>
+            <p className="hotel-desc">{data.desc}</p>
           </div>
           <div className="hotel-detail-price">
-            <h1 className="hotel-title-price">Perfect for a 9-Night stay</h1>
+            <h1 className="hotel-title-price">
+              Perfect for a {days}-Night stay
+            </h1>
             <span className="hotel-price-desc">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Explicabo, quod excepturi libero maxime minima molestiae omnis
               natus
             </span>
             <h2>
-              <b>$945</b>(9 night)
+              <b>Rp{days * data.cheapestPrice * state.options.room}</b>({days}{" "}
+              night and {state.options.room} room)
             </h2>
             <button className="btn">Reserve or Book Now!</button>
           </div>

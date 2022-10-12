@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -6,7 +7,9 @@ const Navbar = () => {
       <div className="navbar">
         <div className="container">
           <div className="navbarWrapper">
-            <span className="logo">OneDev</span>
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+              <span className="logo">OneDev</span>
+            </Link>
             <div className="navItem">
               <button className="btn">Register</button>
               <button className="btn">Login</button>
