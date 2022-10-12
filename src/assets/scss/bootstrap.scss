@@ -59,6 +59,11 @@
 @import "../../components/resultItem/resultItem.scss";
 @import "../../components/hotelContent/hotelContent.scss";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 section {
   margin-top: 80px;
   .titleSection {
@@ -107,6 +112,11 @@ section {
       &.fpPrice {
         font-weight: 500;
       }
+    }
+    .fpRating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
     .fpRating > span {
       font-size: 14px;
@@ -197,8 +207,55 @@ button {
   color: #fff;
 }
 
-@media (max-width: 576px) {
+@media screen and (max-width: 767px) {
   .container {
     max-width: 476px;
+  }
+
+  // HEADER
+  .headerWrapper {
+    position: relative;
+    margin: 20px 0px 190px 0px;
+  }
+  .headerList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .headerDesc {
+    width: 100%;
+  }
+  .headerSearch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: max-content;
+    max-width: 100%;
+    bottom: -250px;
+    padding: 10px 10px;
+  }
+  .headerSearchItem {
+    width: 100%;
+    border: 2px solid $secondary;
+    border-radius: 5px;
+    padding: 0px 5px;
+    position: relative;
+    &.btn-header-search {
+      border: 0;
+      padding: 0;
+    }
+  }
+  .headerSearchInput,
+  .headerSearchText {
+    width: 100%;
+  }
+  .headerIcon {
+    width: 10%;
+  }
+  .date,
+  .options {
+    top: 26px;
   }
 }
