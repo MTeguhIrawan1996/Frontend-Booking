@@ -1,0 +1,21 @@
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .lInput {
+    width: 250px;
+    height: 35px;
+    padding: 10px;
+    border: 1px solid $primary;
+    border-radius: 5px;
+    outline: none;
+  }
+}

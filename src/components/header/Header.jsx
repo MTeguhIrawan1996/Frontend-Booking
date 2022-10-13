@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
@@ -13,8 +13,8 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { update } from "../../features/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { update, updateDate } from "../../features/searchSlice";
 
 const Header = ({ type }) => {
   const dispatch = useDispatch();
@@ -22,18 +22,20 @@ const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const navigate = useNavigate();
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
+  const [date, setDate] = useState([]);
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
+  const { user } = useSelector((state) => state.login);
+  const state = useSelector((state) => state.search);
+
+  useEffect(() => {
+    localStorage.setItem("destination", state.destination);
+    localStorage.setItem("options", JSON.stringify(state.options));
+    setDate(state.date);
+  }, [state]);
 
   const handleOption = (name, option) => {
     setOptions((prev) => {
@@ -43,9 +45,10 @@ const Header = ({ type }) => {
       };
     });
   };
+
   const handleSearch = () => {
-    dispatch(update({ destination, date, options, status: true }));
-    navigate("/hotels", { state: { destination, date, options } });
+    dispatch(update({ destination, date, options }));
+    navigate("/hotels");
   };
   return (
     <React.Fragment>
@@ -89,7 +92,9 @@ const Header = ({ type }) => {
                   optio fugiat, quia deserunt voluptatibus et voluptate enim
                   alias quos, iure eaque ut illum voluptatem. Perspiciatis?
                 </p>
-                <button className="btn headerBtn">Sign in / Register</button>
+                {!user && (
+                  <button className="btn headerBtn">Sign in / Register</button>
+                )}
                 <div className="headerSearch">
                   <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faBed} className="headerIcon" />
@@ -108,14 +113,19 @@ const Header = ({ type }) => {
                     <span
                       onClick={() => setOpenDate(!openDate)}
                       className="headerSearchText"
-                    >{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(
-                      date[0].endDate,
+                    >{`${format(
+                      state.date[0].startDate,
+                      "dd/MM/yyyy"
+                    )} to ${format(
+                      state.date[0].endDate,
                       "dd/MM/yyyy"
                     )}`}</span>
                     {openDate && (
                       <DateRange
                         editableDateInputs={true}
-                        onChange={(item) => setDate([item.selection])}
+                        onChange={(item) =>
+                          dispatch(updateDate({ date: [item.selection] }))
+                        }
                         moveRangeOnFirstSelection={false}
                         ranges={date}
                         className="date"

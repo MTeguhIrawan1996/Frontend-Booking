@@ -1,34 +1,41 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SwiperHotel from "../swiperHotel/SwiperHotel";
 import useFetch from "../../hooks/useFetch";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const HotelContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const state = useSelector((state) => state.search);
   const id = location.pathname.split("/")[2];
+  const state = useSelector((state) => state.search);
   const { data, loading, error } = useFetch(`/hotels/${id}`);
   const [days, setDays] = useState(0);
+  const { user } = useSelector((state) => state.login);
 
   useEffect(() => {
-    if (state.status === true) {
-      const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
-      const dayDifference = (date1, date2) => {
-        const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
-        setDays(diffDays);
-      };
-      dayDifference(state.date[0].endDate, state.date[0].startDate);
-    } else {
-      navigate("/");
-    }
+    const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+    const dayDifference = (date1, date2) => {
+      const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+      const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
+      setDays(diffDays);
+    };
+    dayDifference(state.date[0].endDate, state.date[0].startDate);
   }, [state]);
+
+  const handleClick = () => {
+    if (user) {
+      console.log("opern Modal");
+    } else {
+      navigate("/login");
+    }
+  };
+
+  if (error.message) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <React.Fragment>
@@ -49,7 +56,9 @@ const HotelContent = () => {
             </span>
           </div>
           <div className="button-hotel">
-            <button className="btn btn-primary">Reserve or Book now</button>
+            <button onClick={handleClick} className="btn btn-primary">
+              Reserve or Book now
+            </button>
           </div>
         </div>
         <div className="hotel-img">
@@ -70,10 +79,12 @@ const HotelContent = () => {
               natus
             </span>
             <h2>
-              <b>Rp{days * data.cheapestPrice * state.options.room}</b>({days}{" "}
+              <b>Rp{days * data.cheapestPrice * state.options.room}</b> ({days}{" "}
               night and {state.options.room} room)
             </h2>
-            <button className="btn">Reserve or Book Now!</button>
+            <button onClick={handleClick} className="btn">
+              Reserve or Book Now!
+            </button>
           </div>
         </div>
       </div>

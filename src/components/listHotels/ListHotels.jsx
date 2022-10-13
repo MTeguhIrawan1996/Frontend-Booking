@@ -1,27 +1,36 @@
 import React, { useEffect } from "react";
 import { DateRange } from "react-date-range";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { format } from "date-fns";
 import ResultItem from "../resultItem/ResultItem";
 import useFetch from "../../hooks/useFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { updateDate } from "../../features/searchSlice";
 
 const ListHotels = () => {
-  const location = useLocation();
+  const dispatch = useDispatch();
   const [openDate, setOpenDate] = useState(false);
-  const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
-  const [options, setOptions] = useState(location.state.options);
+  const [destination, setDestination] = useState("");
+  const [date, setDate] = useState([]);
+  const [options, setOptions] = useState({});
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
+  const state = useSelector((state) => state.search);
 
   const { data, loading, error, reFetch } = useFetch(
-    `hotels?city=${destination}&min=${min}&max=${max}`
+    destination === ""
+      ? `hotels`
+      : `hotels?city=${destination}&min=${min}&max=${max}`
   );
 
   const handleClick = () => {
     reFetch();
   };
+
+  useEffect(() => {
+    setDestination(state.destination);
+    setDate(state.date);
+    setOptions(state.options);
+  }, [state]);
 
   return (
     <React.Fragment>
@@ -31,19 +40,36 @@ const ListHotels = () => {
             <h1 className="ls-title">Search</h1>
             <div className="ls-item">
               <label>Destination</label>
-              <input type="text" placeholder={destination} />
+              <input
+                type="text"
+                placeholder={destination}
+                onChange={(e) => setDestination(e.target.value)}
+              />
             </div>
             <div className="ls-item">
               <label>Check in date</label>
-              <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                date[0].startDate,
-                "dd/MM/yyyy"
-              )} to ${format(date[0].endDate, "dd/MM/yyyy")}`}</span>
+              <span onClick={() => setOpenDate(!openDate)}>
+                {`${new Intl.DateTimeFormat("id", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                }).format(
+                  new Date(state.date[0].startDate)
+                )} - ${new Intl.DateTimeFormat("id", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                }).format(new Date(state.date[0].endDate))}`}
+              </span>
               {openDate && (
                 <DateRange
-                  onChange={(item) => setDate([item.selection])}
+                  editableDateInputs={true}
+                  onChange={(item) =>
+                    dispatch(updateDate({ date: [item.selection] }))
+                  }
                   ranges={date}
                   minDate={new Date()}
+                  moveRangeOnFirstSelection={false}
                 />
               )}
             </div>
