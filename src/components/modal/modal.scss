@@ -1,0 +1,73 @@
+.modal-custom {
+  background-color: rgba(0, 0, 0, 0.418);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  z-index: 9999;
+  .container-custom {
+    background-color: #fff;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid $primary;
+  }
+  .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .rItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    border: 2px solid $secondary;
+
+    padding: 10px;
+  }
+  .rItemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .rRoom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .rSelectRoom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 12px;
+    color: $secondary;
+  }
+  .rTitle {
+    font-weight: 500;
+  }
+  .rDesc {
+    font-weight: 300;
+  }
+  .rMax {
+    font-size: 12px;
+  }
+  .rPrice {
+    font-weight: 500;
+  }
+  .btn {
+    max-width: fit-content;
+    margin-left: auto;
+  }
+}

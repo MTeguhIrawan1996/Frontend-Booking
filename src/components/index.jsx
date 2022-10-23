@@ -8,6 +8,7 @@ import ListHotels from "./listHotels/ListHotels";
 import ResultItem from "./resultItem/ResultItem";
 import HotelContent from "./hotelContent/HotelContent";
 import SwiperHotel from "./swiperHotel/SwiperHotel";
+import ModalReserve from "./modal/ModalReserve";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   ResultItem,
   HotelContent,
   SwiperHotel,
+  ModalReserve,
 };

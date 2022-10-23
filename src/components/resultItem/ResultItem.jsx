@@ -1,9 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { updateIdModal } from "../../features/modalSlice";
 
 const ResultItem = (props) => {
   const { data } = props;
+  const dispatch = useDispatch();
 
+  const handleClick = (id) => {
+    dispatch(updateIdModal({ idModal: id }));
+  };
   return (
     <React.Fragment>
       {data.map((datas, i) => {
@@ -39,7 +45,10 @@ const ResultItem = (props) => {
               <div className="result-detail-text">
                 <span className="result-price">${datas.cheapestPrice}</span>
                 <span className="result-text">Includes texas and fees</span>
-                <Link to={`/hotels/${datas._id}`}>
+                <Link
+                  to={`/hotels/${datas._id}`}
+                  onClick={() => handleClick(datas._id)}
+                >
                   <button className="btn navButton">See availability</button>
                 </Link>
               </div>

@@ -1,19 +1,22 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import SwiperHotel from "../swiperHotel/SwiperHotel";
-import useFetch from "../../hooks/useFetch";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { updateModal } from "../../features/modalSlice";
+import useFetch from "../../hooks/useFetch";
+import ModalReserve from "../modal/ModalReserve";
+import SwiperHotel from "../swiperHotel/SwiperHotel";
 
 const HotelContent = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const id = location.pathname.split("/")[2];
-  const state = useSelector((state) => state.search);
-  const { data, loading, error } = useFetch(`/hotels/${id}`);
   const [days, setDays] = useState(0);
+  const state = useSelector((state) => state.search);
   const { user } = useSelector((state) => state.login);
+  const id = location.pathname.split("/")[2];
+  const { data, loading, error } = useFetch(`/hotels/${id}`);
 
   useEffect(() => {
     const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -27,12 +30,12 @@ const HotelContent = () => {
 
   const handleClick = () => {
     if (user) {
-      console.log("opern Modal");
+      localStorage.setItem("idModal", id);
+      dispatch(updateModal());
     } else {
       navigate("/login");
     }
   };
-
   if (error.message) {
     return <Navigate to="/" />;
   }
@@ -88,6 +91,7 @@ const HotelContent = () => {
           </div>
         </div>
       </div>
+      <ModalReserve />
     </React.Fragment>
   );
 };
